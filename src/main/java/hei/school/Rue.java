@@ -2,16 +2,35 @@ package hei.school;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Rue {
     private String  nom;
-    private final Lieux debut;
-    private final Lieux arrive;
+    private Lieux debut;
+    private Lieux arrive;
 
-    public Rue(Lieux lieux1, Lieux lieux2) {
-        this.debut = lieux1;
-        this.arrive = lieux2;
+    public Rue(String nom, Lieux lieu1, Lieux lieu2) {
+        this.nom = nom;
+        this.debut = lieu1;
+        this.arrive = lieu2;
+
+        lieu1.ajouterRue(this);
+        lieu2.ajouterRue(this);
+    }
+
+    public Rue(String nom) {
+        this.nom = nom;
+    }
+
+    public Rue(Lieux lieu1, Lieux lieu2) {
+        this.debut = lieu1;
+        this.arrive = lieu2;
+
+        lieu1.ajouterRue(this);
+        lieu2.ajouterRue(this);
     }
 }
